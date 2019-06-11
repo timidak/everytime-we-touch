@@ -1,79 +1,190 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
 
-		<title>Everytime we touch – I get this feeling 🥵</title>
+    <title>Everytime we touch – I get this feeling 🥵</title>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/typedigital_gradient.css">
+    <link rel="stylesheet" href="css/reveal.css" />
+    <link rel="stylesheet" href="css/theme/typedigital_gradient.css" />
 
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css" />
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section data-markdown>
-					<textarea data-template>
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match(/print-pdf/gi)
+        ? 'css/print/pdf.css'
+        : 'css/print/paper.css';
+      document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown>
+          <textarea data-template>
 						# Everytime we touch – I get this feeling 🥵
 						– Cascada
-					</textarea>
-				</section>
-				<section data-markdown>
-					<textarea data-template>
+					</textarea
+          >
+        </section>
+        <section data-markdown>
+          <textarea data-template>
 						## intro
 
 						Worum geht es denn jetzt eigentlich?
-					</textarea>
-				</section>
-				<section>
-					<img data-src="https://media.giphy.com/media/xZqycRHIQkKNa/giphy.gif" />
-				</section>
-				<section data-markdown>
-					<textarea data-template>
+					</textarea
+          >
+        </section>
+        <section>
+          <img
+            data-src="https://media.giphy.com/media/xZqycRHIQkKNa/giphy.gif"
+          />
+        </section>
+        <section data-markdown>
+          <textarea data-template>
 						## $ whoami_
 						Andreas Kottre 
 
 						co-founder & dev bei [@typedigital_](twitter.com/typedigital_)
 						- Twitter: [@timidak_](twitter.com/timidak_)
 						- GitHub: [@timidak](github.com/timidak)
-					</textarea>
-				</section>
-				<section data-markdown>
-					<textarea data-template>
+					</textarea
+          >
+        </section>
+        <section data-markdown>
+          <textarea data-template>
 						## Was ist Cascade? 🧐
+					</textarea
+          >
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+						- Selector specifity (Scoring)
+						- Style order
+					</textarea
+          >
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+						## Selector specifity
+					</textarea
+          >
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+						### Selector specifity
 
-					</textarea>
-				</section>
-			</div>
-		</div>
+						- Score: 0 0 0 0 0
+						- ! - Inline Style - ID - Class/Attribute/Pseudoclass - Element/Pseudo
+						- Beispiel: 0 0 1 2 1
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+						```css
+							p { font-size: 14pt; }
+							p.my-class { font-size: 20pt; }
+							p#my-id { font-size: 22pt; }
+						```
+					</textarea
+          >
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+						### auflösung
 
-		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
-			Reveal.initialize({
-				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
-					{ src: 'plugin/notes/notes.js', async: true },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
-				]
-			});
-		</script>
-	</body>
+						```css
+							p { font-size: 14pt; } /* 00001 */
+							p.my-class { font-size: 20pt; } /* 00010 */
+							p#my-id { font-size: 22pt; } /* 00100 */
+						```
+					</textarea
+          >
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+						### jetzt ein üblicheres Beispiel
+						```css
+							#nav .removed > a:hover { color: coral }
+						```
+					</textarea
+          >
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+						### auflösung
+						- !important -> 1
+						- Inline Style -> 0
+						- id: nav -> 1
+						- class: remove & pseudoclass: hover -> 2
+						- elemnt: a -> 1
+
+						```css
+							#nav .removed > a:hover { color: coral !important } 
+							/* 10121 */
+						```
+					</textarea
+          >
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+						## Style order
+					</textarea
+          >
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+						### ein Besipel zur Style-Reihenfolge
+
+						```css
+							p.my-class { color: blue; } /* selector specifity 00011 */
+							p.my-class { color: red; } /* selector specifity 00011 */
+					 	```
+					</textarea
+          >
+        </section>
+        <section data-markdown>
+          <textarea data-template>
+						### auflösung
+						```css
+							p.my-class { color: blue; } 
+							p.my-class { color: red; } /* <-- winner */
+					 	```
+					</textarea
+          >
+        </section>
+        <section data-background-image="https://media.giphy.com/media/l4KhPbIIDgO3sMw0w/giphy.gif"></section>
+        <section data-background-image="https://media.giphy.com/media/yoJC2El7xJkYCadlWE/giphy.gif"></section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+      // More info about config & dependencies:
+      // - https://github.com/hakimel/reveal.js#configuration
+      // - https://github.com/hakimel/reveal.js#dependencies
+      Reveal.initialize({
+        dependencies: [
+          { src: 'plugin/markdown/marked.js' },
+          { src: 'plugin/markdown/markdown.js' },
+          { src: 'plugin/notes/notes.js', async: true },
+          {
+            src: 'plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+              hljs.initHighlightingOnLoad();
+            }
+          }
+        ]
+      });
+    </script>
+  </body>
 </html>
